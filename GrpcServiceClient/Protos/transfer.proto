@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "GrpcAppService.GrpcServices";
+
+package file_transfer;
+
+// The FileTransfer service definition.
+service FileTransfer {
+  rpc Ping(PingRequest) returns (PingReply);
+  rpc List(google.protobuf.Empty) returns (ListReply);
+  rpc UploadFile(stream FileChunk) returns (FileUploadReply);
+  rpc DownloadFile(DownloadFileRequest) returns (stream FileChunk);
+  rpc DeleteFile(DeleteFileRequest) returns (DeleteFileReply);
+  
+}
+
+// The request message containing the user's name.
+message PingRequest {
+  string message = 1;
+}
+
+// The response message containing the greetings.
+message PingReply {
+  string message = 1;
+  google.protobuf.Timestamp timestamp = 2;
+}
+
+message DownloadFileRequest {
+    string FileName = 1;
+}
+
+message DeleteFileRequest {
+    string FileName = 1;
+}
+
+message FileChunk {
+    string FileName = 1;
+    bytes ChunkData = 2;
+}
+
+enum FileOperationStatus {
+        None = 0;
+        Ok = 1;
+        Failed = 2;
+        Canceled = 3;
+}
+
+message FileInfo {
+    string FileName = 1;
+    int64 FileSize = 2;
+    string Hash = 3;
+}
+
+message FileUploadReply {
+    FileOperationStatus Status = 1;
+    string Message = 2;
+    FileInfo FileInfo = 3;
+}
+
+message FileDowloadReply {
+    FileOperationStatus Status = 1;
+    string Message = 2;
+    FileInfo FileInfo = 3;
+}
+
+message DeleteFileReply {
+    FileOperationStatus Status = 1;
+    string Message = 2;
+}
+
+message ListReply {
+    repeated FileInfo Files = 1;
+}

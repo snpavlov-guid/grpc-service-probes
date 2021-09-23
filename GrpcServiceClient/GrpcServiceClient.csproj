@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.18.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.39.0" />
+    <PackageReference Include="Grpc.Net.ClientFactory" Version="2.32.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.40.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Management.Automation" Version="7.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\greet.proto" GrpcServices="Client">
+      <SourceUri>https://localhost:5001/Protos/greet</SourceUri>
+    </Protobuf>
+    <Protobuf Include="Protos\greet1.proto" GrpcServices="Client">
+      <SourceUri>https://localhost:5001/Protos/v1/greet</SourceUri>
+    </Protobuf>
+    <Protobuf Include="Protos\transfer.proto" GrpcServices="Client">
+      <SourceUri>https://localhost:5001/Protos/transfer</SourceUri>
+    </Protobuf>
+  </ItemGroup>
+
+</Project>

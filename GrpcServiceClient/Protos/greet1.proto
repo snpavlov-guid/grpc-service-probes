@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "GrpcAppService.GrpcServices.V1";
+
+package greet;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayBonjour (HelloRequest) returns (HelloReply);
+  rpc Echo (EchoRequest) returns (EchoReply);
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+  string title = 2;
+}
+
+message EchoRequest {
+  string message = 1;
+  google.protobuf.BoolValue reverse = 2;
+}
+
+// The response message containing the greetings.
+message HelloReply {
+  string message = 1;
+}
+
+message EchoReply {
+	string message = 1;
+}

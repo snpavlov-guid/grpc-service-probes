@@ -1,0 +1,42 @@
+﻿@using GrpcAppService.GrpcServices
+@using GrpcServiceApp.Common
+
+@model IList<FileInfo>
+
+@{
+    ViewData["Title"] = "File repository";
+}
+
+<div>
+
+    <h2 class="lead">Files</h2>
+    <p>
+        <table class="protos-table">
+            <colgroup>
+                <col style="width: 20%;">
+                <col style="width: 10%;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Size</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var file in Model)
+                {
+                    <tr>
+                        <td>
+                            @file.FileName
+                        </td>
+                        <td>
+                            @Helpers.FormatFileSize(file.FileSize)
+                        </td>
+                     </tr>
+                }
+            </tbody>
+        </table>
+    </p>
+</div>
+
+

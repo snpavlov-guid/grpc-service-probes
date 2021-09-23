@@ -1,0 +1,54 @@
+﻿@using GrpcServiceApp.Models
+
+@model IList<ProtoInfo>
+
+@{
+    ViewData["Title"] = "Protobuf files";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>
+        Communication with gRPC endpoints must be made through a gRPC client.<br />
+        To learn how to create a client, visit tutorial
+        <a href="https://go.microsoft.com/fwlink/?linkid=2086909">Create a gRPC client and server in ASP.NET Core</a>
+    </p>
+
+    <br />
+    <br />
+
+    <h2 class="lead">List of application's gRPC services</h2>
+    <p>
+        <table class="protos-table">
+            <colgroup>
+                <col style="width: 20%;">
+                <col style="width: 10%;">
+                <col style="width: 30%;">
+                <col style="width: 40%;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>gRPC service</th>
+                    <th>Version</th>
+                    <th>Url</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var proto in Model)
+                {
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("GetProto", "Protos", new { name = proto.Name, version = proto.Version })">@proto.Name</a>
+                        </td>
+                        <td>@proto.Version</td>
+                        <td>
+                            <a target="_blank" href=" @proto.Url">@proto.Url</a>
+                        </td>
+                        <td>@proto.Description</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </p>
+</div>

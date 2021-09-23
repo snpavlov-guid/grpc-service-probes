@@ -42,7 +42,7 @@ namespace GrpcServiceClient.Cmdlets
 
             var client = new Greeter.GreeterClient(channel);
 
-            var reply = client.Echo(new EchoRequest { Message = Message, Reverse = Reverse.IsPresent });
+            var reply = client.Echo(new EchoRequest { Message = Message, Reverse = Reverse });
 
             WriteObject(reply?.Message);
 

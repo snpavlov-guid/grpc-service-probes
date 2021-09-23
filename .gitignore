@@ -360,11 +360,5 @@ ASALocalRun/
 *.cobertura.xml
 /.vscode
 
-/eBerggrenWeb/wwwroot/app/**/*.js
-/eBerggrenWeb/wwwroot/app/**/*.js.map
-!/eBerggrenWeb/wwwroot/app/common/ui/fixes-ui.js
-!/eBerggrenWeb/wwwroot/app/widget/app-filtercell.js
-!/eBerggrenWeb/wwwroot/app/widget/app-multiselect-dropdown.js
 
-/eBerggrenWeb/wwwroot/css/*.min.css
 /ParsedFiles

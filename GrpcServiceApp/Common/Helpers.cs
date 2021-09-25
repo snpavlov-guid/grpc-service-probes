@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,6 +39,16 @@ namespace GrpcServiceApp.Common
             var num = Math.Round(bytes / Math.Pow(1024, pos), decimals);
             return String.Format("{0} {1}", Math.Sign(byteCount) * num, suffixes[pos]);
 
+        }
+
+        #endregion
+
+
+        #region Security token helpers
+
+        public static SecurityKey GetSecurityKeyFromBase64String(string strkey)
+        {
+            return new SymmetricSecurityKey(Convert.FromBase64String(strkey));
         }
 
         #endregion

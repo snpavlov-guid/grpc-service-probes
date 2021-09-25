@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "GrpcAppService.GrpcServices";
+
+package authentication;
+
+// The FileTransfer service definition.
+service Authentication {
+  rpc Authenticate(AuthenticateRequest) returns (AuthenticateReply);
+}
+
+// The request message containing the user's name and password.
+message AuthenticateRequest {
+  string username = 1;
+  string password = 2;
+}
+
+// The response message containing the auth token.
+message AuthenticateReply {
+  string token = 1;
+  google.protobuf.Timestamp timestamp = 2;
+}

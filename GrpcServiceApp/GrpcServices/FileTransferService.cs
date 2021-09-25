@@ -15,12 +15,12 @@ namespace GrpcAppService.GrpcServices
     public class FileTransferService : FileTransfer.FileTransferBase
     {
         private readonly IFileRepositoryService _repoService;
-        private readonly ILogger<GreeterService> _logger;
+        private readonly ILogger<FileTransferService> _logger;
 
         public const int MinFileSize = 64 * 1024;
         public const int MaxFileSize = 8192 * 1024;
 
-        public FileTransferService(IFileRepositoryService repoService, ILogger<GreeterService> logger)
+        public FileTransferService(IFileRepositoryService repoService, ILogger<FileTransferService> logger)
         {
             _repoService = repoService;
             _logger = logger;

@@ -29,6 +29,8 @@ namespace GrpcAppService.Configuration
                 return new UrlHelper(factory.GetService<IActionContextAccessor>().ActionContext);
             });
 
+            // Add application JWT authentication service
+            services.AddScoped<IAuthenticationService, JwtAuthenticationService>();
 
             // Add application urls information service
             services.AddScoped<IApplicationUrlService, ApplicationUrlService>();

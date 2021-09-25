@@ -1,5 +1,7 @@
 ﻿using GrpcAppService.Configuration;
 using GrpcAppService.GrpcServices;
+using GrpcServiceApp.Common;
+using GrpcServiceApp.Configuration;
 using GrpcServiceApp.GrpcServices.V1;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,12 +29,18 @@ namespace GrpcServiceApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddGrpc(options => {
-                // TODO: configure grpc options
-            });
+            // Configure JwtBearer authentication
+            services.AddJwtBearerAuthentication(Configuration);
 
             // add application services
             services.AddApplicationServices(Configuration);
+
+            services.AddGrpc(options => {
+                // TODO: configure grpc options
+                options.EnableDetailedErrors = true;
+                options.MaxReceiveMessageSize = GrpcDefaults.MaxReceiveMessageSize;
+                options.MaxSendMessageSize = GrpcDefaults.MaxSendMessageSize;
+            });
 
             // add mvc
             services.AddControllersWithViews(options =>
@@ -54,6 +62,10 @@ namespace GrpcServiceApp
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

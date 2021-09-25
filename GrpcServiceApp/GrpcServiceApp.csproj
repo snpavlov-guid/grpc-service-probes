@@ -5,10 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Protos\authentication.proto" />
     <None Remove="Protos\v1\greet..proto" />
   </ItemGroup>
 
   <ItemGroup>
+    <Protobuf Include="Protos\authentication.proto" />
     <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
     <Protobuf Include="Protos\transfer.proto" GrpcServices="Server" />
     <Protobuf Include="Protos\v1\greet.proto" GrpcServices="Server" />
@@ -16,11 +18,11 @@
 
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.34.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.10" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configuration\" />
     <Folder Include="Views\Protos\" />
     <Folder Include="wwwroot\Protobuf\v1\" />
   </ItemGroup>

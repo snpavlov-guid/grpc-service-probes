@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\authentication.proto" />
+    <Protobuf Include="Protos\authentication.proto" GrpcServices="Server" />
     <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
     <Protobuf Include="Protos\transfer.proto" GrpcServices="Server" />
     <Protobuf Include="Protos\v1\greet.proto" GrpcServices="Server" />
@@ -35,6 +35,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include=".\Protos\transfer.proto" Link="wwwroot\Protobuf\transfer.proto">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".\Protos\authentication.proto" Link="wwwroot\Protobuf\authentication.proto">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

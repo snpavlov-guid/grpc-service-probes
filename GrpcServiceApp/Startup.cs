@@ -2,6 +2,7 @@
 using GrpcAppService.GrpcServices;
 using GrpcServiceApp.Common;
 using GrpcServiceApp.Configuration;
+using GrpcServiceApp.GrpcServices;
 using GrpcServiceApp.GrpcServices.V1;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -69,6 +70,8 @@ namespace GrpcServiceApp
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGrpcService<AuthenticationService>();
+
                 endpoints.MapGrpcService<GreeterService>();
 
                 endpoints.MapGrpcService<GreeterServiceV1>();

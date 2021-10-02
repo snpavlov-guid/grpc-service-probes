@@ -1,5 +1,6 @@
 ﻿using Grpc.Net.Client;
 using GrpcAppService.GrpcServices;
+using GrpcConsoleClient.Common;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace GrpcConsoleClient.Application
 
         public async Task<IList<FileInfo>> ListFilesAsync(string authToken, CancellationToken cancellationToken)
         {
-            using var channel = GrpcChannel.ForAddress(_serviceUrl);
+            using var channel = GrpcHelpers.CreateAuthenticatedChannel(_serviceUrl, authToken);
 
             var client = new FileTransfer.FileTransferClient(channel);
 

@@ -3,6 +3,7 @@ using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using GrpcServiceApp.Application;
 using GrpcServiceApp.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace GrpcAppService.GrpcServices
 {
+    [Authorize]
     public class FileTransferService : FileTransfer.FileTransferBase
     {
         private readonly IFileRepositoryService _repoService;

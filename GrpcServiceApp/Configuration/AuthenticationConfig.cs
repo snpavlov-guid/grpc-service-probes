@@ -21,7 +21,7 @@ namespace GrpcServiceApp.Configuration
             //var schema = JwtBearerDefaults.AuthenticationScheme;
 
             // Add JwtBearer users identity
-            services.AddAuthentication()
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => ConfigureJwtBearer(configuration, options));
 
             return services;

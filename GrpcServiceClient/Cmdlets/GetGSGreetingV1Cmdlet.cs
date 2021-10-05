@@ -40,9 +40,9 @@ namespace GrpcServiceClient.Cmdlets
 
             using var channel = GrpcChannel.ForAddress(ServiceUrl);
 
-            var client = new Greeter.GreeterClient(channel);
+            var client = new GreeterV1.GreeterV1Client(channel);
 
-            var reply = client.SayBonjour(new HelloRequest { Name = Name, Title = Title??"" });
+            var reply = client.SayHello(new HelloRequest { Name = Name??"", Title = Title??"" });
 
             WriteObject(reply?.Message);
 

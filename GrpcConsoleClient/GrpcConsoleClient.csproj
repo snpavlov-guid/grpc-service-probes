@@ -19,6 +19,9 @@
     <Protobuf Include="Protos\authentication.proto" GrpcServices="Client">
       <SourceUri>https://localhost:5001/Protos/authentication</SourceUri>
     </Protobuf>
+    <Protobuf Include="Protos\greet.proto" GrpcServices="Client">
+      <SourceUri>https://localhost:5001/Protos/v1/greet</SourceUri>
+    </Protobuf>
     <Protobuf Include="Protos\transfer.proto" GrpcServices="Client">
       <SourceUri>https://localhost:5001/Protos/transfer</SourceUri>
     </Protobuf>

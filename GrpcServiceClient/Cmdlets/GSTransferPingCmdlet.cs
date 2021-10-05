@@ -6,10 +6,11 @@ using System.Management.Automation;
 using System.Text;
 using System.Threading.Tasks;
 using GrpcAppService.GrpcServices;
+using GrpcServiceClient.Common;
 
 namespace GrpcServiceClient.Cmdlets
 {
-    [Cmdlet(VerbsCommon.Get, "GSTransferPing")]
+    [Cmdlet(VerbsDiagnostic.Ping, "GSTransfer")]
     [OutputType(typeof(string))]
     [CmdletBinding()]
     public class GSTransferPingCmdlet : GSCmdletBase
@@ -28,11 +29,17 @@ namespace GrpcServiceClient.Cmdlets
             ValueFromPipelineByPropertyName = true)]
         public string Message { get; set; }
 
+        [Parameter(
+             Position = 2,
+             ValueFromPipeline = true,
+             ValueFromPipelineByPropertyName = true)]
+        public string Token { get; set; }
+
         protected override void ProcessRecord()
         {
             base.ProcessRecord();
 
-            using var channel = GrpcChannel.ForAddress(ServiceUrl);
+            using var channel = GrpcHelpers.CreateAuthenticatedChannel(ServiceUrl, Token);
 
             var client = new FileTransfer.FileTransferClient(channel);
 

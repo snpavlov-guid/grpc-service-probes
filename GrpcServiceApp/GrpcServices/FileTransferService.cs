@@ -31,6 +31,7 @@ namespace GrpcAppService.GrpcServices
 
         #region FileTransfer service implementation
 
+        [AllowAnonymous]
         public override Task<PingReply> Ping(PingRequest request, ServerCallContext context)
         {
             var time = DateTimeOffset.Now;

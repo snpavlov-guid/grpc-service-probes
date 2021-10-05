@@ -9,8 +9,9 @@ option csharp_namespace = "GrpcAppService.GrpcServices.V1";
 package greet;
 
 // The greeting service definition.
-service Greeter {
+service GreeterV1 {
   // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply);
   rpc SayBonjour (HelloRequest) returns (HelloReply);
   rpc Echo (EchoRequest) returns (EchoReply);
 }

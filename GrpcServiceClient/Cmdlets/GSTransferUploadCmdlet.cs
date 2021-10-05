@@ -32,6 +32,12 @@ namespace GrpcServiceClient.Cmdlets
             ValueFromPipelineByPropertyName = true)]
         public string FilePath { get; set; }
 
+        [Parameter(
+              Position = 2,
+              ValueFromPipeline = true,
+              ValueFromPipelineByPropertyName = true)]
+        public string Token { get; set; }
+
 
         protected override void ProcessRecord()
         {
@@ -60,7 +66,7 @@ namespace GrpcServiceClient.Cmdlets
 
 
             // Create client
-            using var channel = GrpcChannel.ForAddress(ServiceUrl);
+            using var channel = GrpcHelpers.CreateAuthenticatedChannel(ServiceUrl, Token);
 
             var client = new FileTransfer.FileTransferClient(channel);
 

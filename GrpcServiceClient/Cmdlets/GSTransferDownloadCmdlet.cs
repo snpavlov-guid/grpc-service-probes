@@ -1,6 +1,7 @@
 ﻿using Grpc.Core;
 using Grpc.Net.Client;
 using GrpcAppService.GrpcServices;
+using GrpcServiceClient.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,6 +39,12 @@ namespace GrpcServiceClient.Cmdlets
             ValueFromPipelineByPropertyName = true)]
         public string OutputDir { get; set; }
 
+        [Parameter(
+            Position = 3,
+            ValueFromPipeline = true,
+            ValueFromPipelineByPropertyName = true)]
+        public string Token { get; set; }
+
         protected override void ProcessRecord()
         {
             base.ProcessRecord();
@@ -55,7 +62,7 @@ namespace GrpcServiceClient.Cmdlets
             var filePath = Path.Combine(outputDir, fileName);
 
             // Create client
-            using var channel = GrpcChannel.ForAddress(ServiceUrl);
+            using var channel = GrpcHelpers.CreateAuthenticatedChannel(ServiceUrl, Token);
 
             var client = new FileTransfer.FileTransferClient(channel);
 

@@ -11,16 +11,18 @@ namespace GrpcConsoleClient.Application
     {
         readonly IAuthenticationService _authService;
         readonly IFileTransferService _transferService;
+        readonly IGreetingService _greetingService;
 
-        public ExecutorService(IAuthenticationService authService, IFileTransferService transferService)
+        public ExecutorService(IAuthenticationService authService, IFileTransferService transferService, IGreetingService greetingService)
         {
             _authService = authService;
             _transferService = transferService;
+            _greetingService = greetingService;
         }
 
         public async Task ExecuteExample01Async(CancellationToken cancellationToken)
         {
-            Console.WriteLine("Enter service credentionals");
+            Console.WriteLine("Enter service credentionals (any non-empty strings are allowed):");
 
             Console.Write("Enter username: ");
             var userName = Console.ReadLine();
@@ -30,13 +32,18 @@ namespace GrpcConsoleClient.Application
 
             var authToken = await _authService.AuthenticateAsync(userName, password, cancellationToken);
 
+            var greetings = await _greetingService.GetGreetings(userName, null);
+            Console.WriteLine(greetings);
+
+            Console.WriteLine();
+
             var files = await _transferService.ListFilesAsync(authToken, cancellationToken);
 
             Console.WriteLine("List of server files:");
-            Console.WriteLine($"{"Name".PadRight(42)} {"Size".PadRight(12)}");
+            Console.WriteLine($"{"Name",-42} {"Size",-12}");
             foreach (var file in files)
             {
-                Console.WriteLine($"{file.FileName.PadRight(42)} {file.FileSize.ToString().PadRight(12)}");
+                Console.WriteLine($"{file.FileName,-42} {file.FileSize,-12}");
             }
 
         }

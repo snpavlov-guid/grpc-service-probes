@@ -40,9 +40,9 @@ namespace GrpcServiceClient.Cmdlets
 
             using var channel = GrpcChannel.ForAddress(ServiceUrl);
 
-            var client = new Greeter.GreeterClient(channel);
+            var client = new GreeterV1.GreeterV1Client(channel);
 
-            var reply = client.Echo(new EchoRequest { Message = Message, Reverse = Reverse });
+            var reply = client.Echo(new EchoRequest { Message = Message??"", Reverse = Reverse });
 
             WriteObject(reply?.Message);
 

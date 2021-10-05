@@ -15,6 +15,9 @@ namespace GrpcConsoleClient.Configuration
             // Add examples' executor service
             services.AddSingleton<IExecutorService, ExecutorService>();
 
+            // Add greeting service
+            services.AddTransient<IGreetingService, GreetingService>();
+
             // Add authentication service
             services.AddTransient<IAuthenticationService, AuthenticationService>();
 

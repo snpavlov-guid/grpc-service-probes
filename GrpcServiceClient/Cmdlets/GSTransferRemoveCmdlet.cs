@@ -1,5 +1,6 @@
 ﻿using Grpc.Net.Client;
 using GrpcAppService.GrpcServices;
+using GrpcServiceClient.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,15 +29,22 @@ namespace GrpcServiceClient.Cmdlets
              ValueFromPipelineByPropertyName = true)]
         public string FileName { get; set; }
 
+        [Parameter(
+          Position = 2,
+          ValueFromPipeline = true,
+          ValueFromPipelineByPropertyName = true)]
+        public string Token { get; set; }
+
         protected override void ProcessRecord()
         {
             base.ProcessRecord();
 
-            using var channel = GrpcChannel.ForAddress(ServiceUrl);
+            using var channel = GrpcHelpers.CreateAuthenticatedChannel(ServiceUrl, Token);
 
             var client = new FileTransfer.FileTransferClient(channel);
 
-            var reply = client.DeleteFile(new DeleteFileRequest() { FileName = FileName });
+            var reply = client.DeleteFile(new DeleteFileRequest() { FileName = FileName },
+                null, null, _cancellationTokenSource.Token);
 
             WriteObject(reply);
         }

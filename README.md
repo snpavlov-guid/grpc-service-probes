@@ -19,7 +19,10 @@ Implements several gRPC services:
 - **authentication** - authentication service. Service demonstrates JWT based [gRPC service authentication](https://docs.microsoft.com/en-us/aspnet/core/grpc/authn-and-authz?view=aspnetcore-5.0).
 
 
-![gRPCServiceApp-Services](.\Documents\Pictures\gRPCServiceApp-Services.PNG)
+
+<img src=".\Documents\Pictures\gRPCServiceApp-Services.PNG" alt="gRPCServiceApp-Services" style="zoom: 50%;" />
+
+
 
 Service app implements a demo file repository for transfer service.
 
@@ -43,7 +46,9 @@ Makes both anonymous and authenticated calls to GrpcServiceApp.
 
 .Net Core management automation application. Implements set of coded PowerShell cmdlets to demonstrate calls of gRPC service methods.
 
- ![GrpcServiceClient-Run](.\Documents\Pictures\GrpcServiceClient-Run.PNG)
+<img src=".\Documents\Pictures\GrpcServiceClient-Run.PNG" alt="GrpcServiceClient-Run" style="zoom: 50%;" />
+
+
 
 
 

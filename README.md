@@ -44,11 +44,17 @@ Makes both anonymous and authenticated calls to GrpcServiceApp.
 
 ## GrpcServiceClient project
 
-.Net Core management automation application. Implements set of coded PowerShell cmdlets to demonstrate calls of gRPC service methods.
+.Net Core management automation application. Implements set of [coded PowerShell cmdlets](https://docs.microsoft.com/en-us/powershell/scripting/developer/cmdlet/how-to-write-a-simple-cmdlet?view=powershell-7.1) to demonstrate calls of gRPC service methods.
 
 <img src=".\Documents\Pictures\GrpcServiceClient-Run.PNG" alt="GrpcServiceClient-Run" style="zoom: 50%;" />
 
 
 
 
+
+## Acknowledgements
+
+- Samples of gRPC services in ASP.NET Core 5.0 - https://github.com/AnthonyGiretti/aspnetcore-grpc-samples
+
+- Using C# to Create PowerShell Cmdlets - https://www.red-gate.com/simple-talk/development/dotnet-development/using-c-to-create-powershell-cmdlets-the-basics/
 
